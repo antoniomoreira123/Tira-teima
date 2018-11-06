@@ -1,0 +1,40 @@
+import java.util.Random;
+
+class Main {
+  public static void main(String[] args) {
+  int tamanhoMatriz = 3;//VAlor mutável
+  int[][] matriz = new int[tamanhoMatriz][tamanhoMatriz];
+  Random rnd = new Random();
+  
+  for (int i = 0; i < tamanhoMatriz; i++) {
+			for (int j = 0; j < tamanhoMatriz; j++) {
+				matriz[i][j] = rnd.nextInt((100 - (-100) + 1) + (-100));
+			}
+		}
+
+		System.out.println("Diferença = " + new Matrix().difereDiagonais(matriz, tamanhoMatriz));
+  }
+
+  public static class Matrix {
+
+    public int difereDiagonais(int[][] mtrx, int n) {
+        int somaPrincipal = 0;
+	      int col = 0;
+        int somaSecundaria = 0;
+
+      for (int linha = 0; linha < mtrx.length; linha++) {
+          somaPrincipal += mtrx[linha][col];
+          col++;
+      }
+        
+      for(int i = mtrx.length - 1; i >= 0; i--) {
+        for(int j = mtrx.length - 1; j >= 0; j--) {
+          if(i + j == mtrx.length -	1) {
+            somaSecundaria += mtrx[i][j];
+          }
+        }
+      }
+      return somaPrincipal - somaSecundaria;
+    }
+  }
+}
